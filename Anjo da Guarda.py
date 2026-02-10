@@ -3,8 +3,8 @@ import time
 from PIL import ImageGrab
 from pynput.keyboard import Controller, Key
 
-Cor = (206, 55, 55) 
-Local = (189, 8, 423, 3) 
+Cor = (210, 106, 106) 
+Local = (193, 7, 143, 6) 
 
 keyboard_controller = Controller()
 
