@@ -1,11 +1,12 @@
 import psutil
 import time
 import keyboard
-import pyautogui
+import win32gui
+import win32api
+import win32con
 
 Cor = (255, 0, 0)  
-
-Local = (100, 100, 200, 20)
+Local = (100, 100, 200, 20)  
 
 def is_tibia_running():
     return any(
@@ -13,18 +14,22 @@ def is_tibia_running():
         and process.info['name'].lower() == 'client' 
         for process in psutil.process_iter(['name'])
     )
-        
+
 def press_shift_2():
     keyboard.press('shift')
     keyboard.press_and_release('2')
     keyboard.release('shift')
 
 def cor_detectada():
-    screenshot = pyautogui.screenshot(region=Local) 
+    x0, y0, largura, altura = Local
     
-    for x in range(screenshot.width):
-        for y in range(screenshot.height):
-            if screenshot.getpixel((x, y)) == Cor:
+    for x in range(x0, x0 + largura):
+        for y in range(y0, y0 + altura):
+            cor_pixel = win32gui.GetPixel(win32gui.GetDC(0), x, y)
+            r = cor_pixel & 0xff
+            g = (cor_pixel >> 8) & 0xff
+            b = (cor_pixel >> 16) & 0xff
+            if (r, g, b) == Cor:
                 return True
     return False
 
@@ -42,7 +47,7 @@ def main():
             if tibia_aberto:
                 tibia_aberto = False
 
-        time.sleep(0.1)  
+        time.sleep(0.01) 
 
 if __name__ == "__main__":
     main()
