@@ -1,21 +1,27 @@
 import psutil
 import time
-import keyboard
 from PIL import ImageGrab
+from pynput.keyboard import Controller, Key
 
-Cor = (255, 0, 0)  
-Local = (100, 100, 200, 20) 
+Cor = (206, 55, 55) 
+Local = (189, 8, 423, 3) 
+
+keyboard_controller = Controller()
 
 def is_tibia_running():
-    return any(
-        process.info['name'] and process.info['name'].lower() == 'client'
-        for process in psutil.process_iter(['name'])
-    )
+    for process in psutil.process_iter(['name']):
+        try:
+            if process.info['name'] and process.info['name'].lower() == 'client':
+                return True
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            continue  
+    return False
 
 def press_shift_2():
-    keyboard.press('shift')
-    keyboard.press_and_release('@')
-    keyboard.release('shift')
+    keyboard_controller.press(Key.shift)  
+    keyboard_controller.press('2')
+    keyboard_controller.release('2')
+    keyboard_controller.release(Key.shift)  
 
 def cor_detectada():
     x0, y0, largura, altura = Local
@@ -26,19 +32,23 @@ def cor_detectada():
         for y in range(altura):
             r, g, b = pixels[x, y]  
             if (r, g, b) == Cor:
-                return True  
+                return True 
     return False  
 
 def main():
     tibia_aberto = False
+    cor_detectada_ultima_vez = False  
 
     while True:
         if is_tibia_running():  
             if not tibia_aberto:
                 tibia_aberto = True  
-
             if cor_detectada():  
-                press_shift_2()  
+                if not cor_detectada_ultima_vez:  
+                    press_shift_2()  
+                    cor_detectada_ultima_vez = True  
+            else:
+                cor_detectada_ultima_vez = False  
         else:
             if tibia_aberto:
                 tibia_aberto = False  
@@ -47,4 +57,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
