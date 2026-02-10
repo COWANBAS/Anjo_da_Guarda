@@ -7,3 +7,5 @@ Não e trapaça se me beneficia.
 https://github.com/user-attachments/assets/2d2654af-438c-457c-b9af-b4bb3910a91a
 
 Obs se quiser alterar a cor e o local do script use esse script: https://github.com/COWANBAS/Coordenadas
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f7e1b880-108c-458a-a664-49df42a46aed" />
