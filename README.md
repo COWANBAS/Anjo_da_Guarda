@@ -5,3 +5,5 @@ O macro foi feito para funcionar em monitores com a resolução 1920x1080 se tiv
 Não e trapaça se me beneficia.
 
 https://github.com/user-attachments/assets/2d2654af-438c-457c-b9af-b4bb3910a91a
+
+Obs se quiser alterar a cor e o local do script use esse script: https://github.com/COWANBAS/Coordenadas
