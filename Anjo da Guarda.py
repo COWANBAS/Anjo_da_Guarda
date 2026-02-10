@@ -10,9 +10,8 @@ def is_tibia_running():
     return any(
         process.info['name']
         and process.info['name'].lower() == 'client' 
-        for process in psutil.process_iter(['name'])
-    )
-
+        for process in psutil.process_iter(['name']))
+        
 def press_shift_2():
     keyboard.press('shift')
     keyboard.press_and_release('2')
