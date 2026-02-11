@@ -6,4 +6,4 @@ Não e trapaça se me beneficia.
 
 https://github.com/user-attachments/assets/2d2654af-438c-457c-b9af-b4bb3910a91a
 
-Obs se quiser alterar a cor e o local do script use esse script: https://github.com/COWANBAS/Coordenadas
+Obs se quiser alterar a cor da life e as cordenadas use esse script: https://github.com/COWANBAS/Coordenadas
